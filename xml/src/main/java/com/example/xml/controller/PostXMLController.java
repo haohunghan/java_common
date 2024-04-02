@@ -1,6 +1,7 @@
 package com.example.xml.controller;
 
 import com.example.xml.model.Person;
+import com.example.xml.service.IPostXmlService;
 import jakarta.xml.bind.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -14,23 +15,14 @@ import java.util.Objects;
 
 @RestController
 public class PostXMLController {
-    Unmarshaller unmarshallerPerson;
+    private final IPostXmlService postXmlService;
 
-    public PostXMLController(Unmarshaller unmarshallerPerson) {
-        this.unmarshallerPerson = unmarshallerPerson;
+    public PostXMLController(IPostXmlService postXmlService) {
+        this.postXmlService = postXmlService;
     }
+
     @PostMapping(value = "/post", produces = MediaType.APPLICATION_XML_VALUE)
-    public String get() throws JAXBException {
-        RestTemplate restTemplate = new RestTemplate();
-
-
-        ResponseEntity<String> response = restTemplate
-                .exchange("http://localhost:8080/get", HttpMethod.GET, null, String.class);
-
-        String xmlResponse = Objects.requireNonNull(response.getBody());
-        StringReader stringReader = new StringReader(xmlResponse);
-        Person person = (Person) unmarshallerPerson.unmarshal(stringReader);
-
-        return person.toString();
+    public String post() throws JAXBException {
+        return postXmlService.postXml();
     }
 }

@@ -1,0 +1,4 @@
+sql:
+  host: 'http://localhost.com'
+  id: 'haobeo'
+  password: 'abc'

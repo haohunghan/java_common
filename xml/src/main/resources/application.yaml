@@ -1,0 +1,17 @@
+myapp:
+  sample: "haobeo"
+
+sql:
+  host: 'http://application-files.com'
+  id: 'haobeo'
+  password: 'abc'
+
+spring:
+  profiles:
+    group:
+      dev:
+        - sql
+        - xml-api
+      prod:
+        - sql
+        - xml-api
