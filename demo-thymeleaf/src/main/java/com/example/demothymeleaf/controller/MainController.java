@@ -11,13 +11,8 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    private static final List<Category> categories = new ArrayList<>();
-    static {
-        categories.add(new Category("Business", "/business"));
-        categories.add(new Category("Tech", "/tech"));
-    }
 
-    @GetMapping("/new/mansion/{lc}/{pf}/")
+    @GetMapping("/test")
     public ModelAndView index(ModelAndView modelAndView) {
         modelAndView.addObject("message", "message");
 
